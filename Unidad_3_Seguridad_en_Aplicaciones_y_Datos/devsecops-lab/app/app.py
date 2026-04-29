@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, render_template
 import sqlite3
 import subprocess
 import os
@@ -49,6 +49,11 @@ def init_db():
     )
     db.commit()
     db.close()
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/health')
